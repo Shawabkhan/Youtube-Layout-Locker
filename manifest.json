@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Layout Locker",
+  "version": "1.1",
+  "description": " With YouTube Layout Locker, you can take control of your YouTube interface! This powerful extension allows you to customize your YouTube layout just the way you like it and lock it in place. Say goodbye to unwanted updates or rearrangements. Whether you prefer a minimalist view or a feature-packed setup, YouTube Layout Locker keeps your chosen layout consistent, giving you the seamless experience you deserve. Developed by Cyber Warrior",
+  "author": "Cyber Warrior Shawab Khan",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

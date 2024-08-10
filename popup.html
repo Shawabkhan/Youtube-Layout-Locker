@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YouTube Lock Controls</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 10px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="toggleLock">Toggle Lock</button>
+
+    <script>
+      document.getElementById('toggleLock').addEventListener('click', () => {
+        chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+          chrome.scripting.executeScript({
+            target: {tabId: tabs[0].id},
+            function: () => {
+              chrome.runtime.sendMessage({action: 'toggleLock'}, (response) => {
+                document.getElementById('toggleLock').innerText = response.status === 'locked' ? 'Unlock Controls' : 'Lock Controls';
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
